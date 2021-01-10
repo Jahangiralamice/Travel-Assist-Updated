@@ -229,5 +229,21 @@ namespace TouristPlace.Controllers
 
             return View();
         }
+
+
+        #region DbCheckIfExist
+
+        [HttpPost]
+        public bool DbCheckIfExist(string userName)
+        {
+            bool isExist = unitOfWork.TouristRegistrationRepository.Get(r => r.UserName == userName).Any();
+            if (isExist)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        #endregion
     }
 }

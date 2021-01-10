@@ -1,0 +1,245 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<style type="text/css">
+    div.gallery {
+        border: 1px solid #ccc;
+    }
+
+        div.gallery:hover {
+            border: 1px solid #777;
+        }
+
+        div.gallery img {
+            width: 100%;
+            height: auto;
+        }
+
+    div.desc {
+        padding: 15px;
+        text-align: center;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .responsive {
+        padding: 0 6px;
+        float: left;
+        width: 24.99999%;
+    }
+
+
+    @@media only screen and (max-width: 700px) {
+        .responsive {
+            width: 49.99999%;
+            margin: 6px 0;
+        }
+    }
+
+    @@media only screen and (max-width: 500px) {
+        .responsive {
+            width: 100%;
+        }
+    }
+
+    .clearfix:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    p {
+        text-align: justify;
+    }
+
+    .row {
+        border: 1px solid gray;
+    }
+</style>
+
+<h2>Popular Tourist Place In Bangladesh</h2>
+<div class="responsive">
+
+    <div class="gallery">
+        <div class="desc">
+            Saint Martin
+        </div>
+        <a target="_blank" href="img_5terre.jpg">
+            <img src="~/Content/TouristPlace/img_5terre.jpg" alt="Cinque Terre" width="600" height="400">
+        </a>
+        <div class="desc">
+            <p>This example use media queries to re-arrange the images on different screen sizes: for screens larger than 700px wide, it will show four images side by side, for screens smaller than 700px, it will show two images side by side. For screens smaller than 500px, the images will stack vertically (100%).</p>
+        </div>
+
+        <div class="desc">
+            <input type="button" class="vComments btn-success" value="View Comments" /> <input type="button" class="vComments btn-success" value="Add Comments" />
+            <div id="dvCommentsAndFeedBack">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="responsive">
+
+    <div class="gallery">
+        <div class="desc">
+            Kuakata
+        </div>
+        <a target="_blank" href="img_forest.jpg">
+            <img src="~/Content/TouristPlace/img_forest.jpg" alt="Forest" width="600" height="400">
+        </a>
+        <div class="desc">
+            <p>This example use media queries to re-arrange the images on different screen sizes: for screens larger than 700px wide, it will show four images side by side, for screens smaller than 700px, it will show two images side by side. For screens smaller than 500px, the images will stack vertically (100%).</p>
+
+        </div>
+        <div class="desc">
+            <input type="button" class="vComments btn-success" value="View Comments" /> <input type="button" class="addComments btn-success" value="Add Comments" />
+        </div>
+        <div class="desc" id="dvPreviousComments" style="display:none;">
+            <div class="row">
+                <div>
+                    <h6>Md.Obaidullah Al Mamun</h6>
+                    <p>This is very nice place</p>
+                </div>
+            </div>
+            <div class="row">
+                <div style="width:20%;float:left;">
+                    <img class="img-circle" width="60" height="60" src="~/Content/TouristPlace/img_5terre.jpg" />
+                </div>
+                <div style="width:80%;float:right;">
+                    <h6>Jahangir alom</h6>
+                    <p>This is very nice place</p>
+                </div>
+
+            </div>
+            <div class="row">
+                <div style="width:20%;float:left;">
+                    <img class="img-circle" width="60" height="60" src="~/Content/TouristPlace/img_5terre.jpg" />
+                </div>
+                <div style="width:80%;float:right;">
+                    <h6>Ashraf alom</h6>
+                    <p>This is very nice place</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="desc" id="dvAddComments" style="display:none;">
+            <div class="row">
+                <div>
+                    <textarea id="taComments" class="taComments form-control"></textarea>
+                </div>
+                <div>
+                    <input type="button" id="btnSaveComments" class="btnSaveComments form-control" value="Save" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="responsive">
+    <div class="gallery">
+        <div class="desc">
+            Cox'x bazar
+        </div>
+        <a target="_blank" href="img_lights.jpg">
+            <img src="~/Content/TouristPlace/img_lights.jpg" alt="Northern Lights" width="600" height="400">
+        </a>
+        <div class="desc">
+            <p>This example use media queries to re-arrange the images on different screen sizes: for screens larger than 700px wide, it will show four images side by side, for screens smaller than 700px, it will show two images side by side. For screens smaller than 500px, the images will stack vertically (100%).</p>
+
+        </div>
+        <div class="desc">
+            <input type="button" class="vComments btn-success" value="View Comments" /> <input type="button" class="vComments btn-success" value="Add Comments" />
+        </div>
+    </div>
+</div>
+
+<div class="responsive">
+
+    <div class="gallery">
+        <div class="desc">
+            Bandarban
+        </div>
+        <a target="_blank" href="img_mountains.jpg">
+            <img src="~/Content/TouristPlace/img_lights.jpg" alt="Mountains" width="600" height="400">
+        </a>
+        <div class="desc">
+            <p>This example use media queries to re-arrange the images on different screen sizes: for screens larger than 700px wide, it will show four images side by side, for screens smaller than 700px, it will show two images side by side. For screens smaller than 500px, the images will stack vertically (100%).</p>
+        </div>
+        <div class="desc">
+            <input type="button" class="vComments btn-success" value="View Comments" /> <input type="button" class="vComments btn-success" value="Add Comments" />
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(document).on('click', '.vComments', function () {
+        var tId = $(this).attr('id');             
+        $.ajax({
+                url: "@Url.Action("GetCommentsByTouristPlaceId", "Accounting")",
+                type: "POST",
+                data: JSON.stringify({ tId: tId}),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (response) {
+                 }, success: function (result) {
+                    var option = '';
+                    var tr = '';
+                    var name = '';
+                    var comments = '';
+                    $.each(result.Data.data, function () {
+                        debugger;
+                        name = 'Md.Obaidullah Al Mamun';
+                        comments = 'This is very nice place';                        
+                        tr = tr + '<div class="row">';
+                        tr = tr + '<div>';
+                        tr = tr + '<h6>' + name + '</h6>';
+                        tr = tr + ' <p>' + comments + '</p>';
+                        tr = tr + ' </div>';
+                        tr = tr + ' </div>';
+                    });
+                    $(this).parent().find('#dvCommentsAndFeedBack').html(tr);                    
+                }
+        });
+    });
+    $(document).on('click', '.addComments', function () {
+        var tr = '';
+        $('#dvAddComments').show();
+        $('#dvPreviousComments').hide();
+    });
+    $(document).on('click', '.btnSaveComments', function () {
+        var tpId = $(this).attr('id');
+        var tr = '';
+        var comments = $('.taComments').val();
+        var obj = new Object();
+        obj.TouristPlaceId = tpId;
+        obj.Comment = comments;
+        obj.CommentDate = new Date();
+        obj.CommentBy = 1;       
+              $.ajax({
+                url: "@Url.Action("SaveComments", "Accounting")",
+                type: "POST",
+                data: JSON.stringify({ obj: obj}),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (response) {
+                }, success: function (response) {
+                    if (response.Data.Status == 'Success') {
+                        $('.taComments').val('');
+                        alert('Comments Saved successfully');
+                    }
+                    if (response.Data.Status == 'Invalid') {
+                        alert(response.Data.Msg);
+                    }
+                }
+               });
+    });
+</script>
+

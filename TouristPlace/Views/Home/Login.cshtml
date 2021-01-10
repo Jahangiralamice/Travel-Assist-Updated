@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "User Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    
+}
+<style type="text/css">
+    .addRequiredClass{
+        border:1px solid red;
+    }
+</style>
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+<div class="center-screen">
+    <div class="panel panel-default" style="max-width:500px;width:500px;">
+        <div class="panel-heading bg-success" style="background-color: #15c0e7;">Log In</div>
+        <div class="panel-body" id="dvLogInPanel">
+
+            <table class="table table-bordered table-condensed">
+                <tbody>
+                    <tr>
+                        <td style="font-weight: bold;">User Name</td>
+                        <td>
+                            <input type="text" id="txtUserName" class="form-control isrequired" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Password</td>
+                        <td>
+                            <input type="password" id="txtPassword" class="form-control isrequired" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="button" id="btnLogin" class="btn btn-primary pull-right" value="Login" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+    
+
+
+<style type="text/css">
+
+    .center-screen {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .btn-primary {
+        margin-right: 40px;
+    }
+
+   
+</style>
+    
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    
+    $(document).on('click', '#btnLogin', function () {       
+        var isValid = true;
+        //$('#dvLogInPanel .isrequired').each(function (index, item) {
+        //    if (!($(this).val().length > 0)) {
+        //        isValid = false;
+        //        debugger;
+        //        $(this).addClass('addRequiredClass');
+        //    }
+        //});
+
+        if ($('#txtUserName').val().length > 0) {
+            
+        } else {           
+            isValid = false;
+            $('#txtUserName').css("border", "1px solid red");
+           
+        }
+
+        if (($('#txtPassword').length > 0)) {
+            
+        } else {
+            isValid = false;
+            debugger;
+            $('#txtPassword').css("border", "1px solid red");
+           
+        }
+
+        if (isValid) {
+        var un = $('#txtUserName').val();
+        var pass = $('#txtPassword').val();
+        var y = confirm('Are you sure?');
+        if (y) {
+             $.ajax({
+                url: "@Url.Action("Login", "Home")",
+                type: "POST",
+                 data: JSON.stringify({ userName: un, password: pass}),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (response) {
+                }, success: function (response) {
+                    if (response.Data.Status == "Success") {
+                        window.location = "/Home/TouristDashboard";
+                    } else {
+                        alert('Invalid user name or password');
+                        $('#txtUserName').val("");
+                        $('#txtPassword').val("");
+                    }
+                }
+                });
+        }
+
+        }
+    });
+
+
+</script>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+

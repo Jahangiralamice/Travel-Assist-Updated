@@ -1,0 +1,46 @@
+﻿@model IEnumerable<TouristPlace.Models.ToristPlace>
+
+@{
+    ViewBag.Title = "MyPlaces";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>My Places List</h2>
+<table class="table table-bordered table-condensed table-responsive">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.TouristRegistration.Name)
+        </th>*@
+        <th style="width: 20%;">
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>Place Image
+            @*@Html.DisplayNameFor(model => model.ImageUrl)*@
+        </th>
+        <th style="width: 45%;">
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th style="width: 10%;">Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.TouristRegistration.Name)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            <img src="@item.ImageUrl" alt="Cinque Terre" style="width:120px;height:60px;">
+        </td>
+        <td style="width: 60%;">
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditTouristPlace", new { id=item.ToristPlaceId }) |           
+            @Html.ActionLink("Delete", "DeleteTouristPlace", new { id=item.ToristPlaceId }, new { onclick = "return confirm('Are you sure?');" })
+        </td>
+    </tr>
+}
+
+</table>

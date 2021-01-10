@@ -1,0 +1,97 @@
+﻿@model IEnumerable<TouristPlace.Models.ToristPlace>
+
+@{
+    /**/
+
+    ViewBag.Title = "Tourist Assistant";
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+}
+
+<style type="text/css">
+    div.gallery {
+        border: 1px solid #ccc;
+    }
+
+        div.gallery:hover {
+            border: 1px solid #777;
+        }
+
+        div.gallery img {
+            width: 100%;
+            height: auto;
+        }
+
+    div.desc {
+        padding: 15px;
+        text-align: center;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .responsive {
+        padding: 0 6px;
+        float: left;
+        width: 24.99999%;
+    }
+
+
+    @@media only screen and (max-width: 700px) {
+        .responsive {
+            width: 49.99999%;
+            margin: 6px 0;
+        }
+    }
+
+    @@media only screen and (max-width: 500px) {
+        .responsive {
+            width: 100%;
+        }
+    }
+
+    .clearfix:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    p {
+        text-align: justify;
+    }
+</style>
+
+<h2 style="text-align:center;color:green;">Popular Tourist Place In World</h2>
+@foreach (var item in Model)
+{
+    
+        <div class="responsive" style="margin-bottom:10px!important;">
+
+            <div class="gallery">
+                <div class="desc" style="font-weight:bold;">
+                    @item.Title
+                </div>
+                <a target="_blank" href="#">
+                    <img src="@item.ImageUrl" alt="Cinque Terre" class="img-responsive" style="height:200px;">
+                </a>
+                <div class="desc" style="text-align:justify;min-height:220px;">
+                    <p>
+                        @if (@item.Description.Length > 250)
+                        {
+                            <span> @item.Description.Substring(0, 250)</span>
+                            @Html.ActionLink("View Details ", "ViewDetails", new { id = item.ToristPlaceId })
+
+                        }
+                        else
+                        {
+                            <span>
+                                @item.Description
+                            </span>
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+    
+}
+

@@ -1,0 +1,26 @@
+﻿@model TouristPlace.Models.ToristPlace
+
+@{
+    ViewBag.Title = "PlaceEdit";
+    Layout = "~/Views/Shared/_PublicLayout.cshtml";
+}
+<div class="responsive">
+
+    <div class="gallery">
+        <div class="desc" style="font-weight:bold;">
+            @Model.Title
+        </div>
+        <a target="_blank" href="@Model.ImageUrl">
+            <img src="@Model.ImageUrl" alt="Cinque Terre" class="img-responsive" style="height:200px;">
+        </a>
+        <div class="desc" style="text-align:justify;min-height:220px;">
+            <p>
+                @Model.Description
+            </p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

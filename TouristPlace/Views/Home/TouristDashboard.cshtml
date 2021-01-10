@@ -1,0 +1,264 @@
+﻿@model IEnumerable<TouristPlace.Models.ToristPlace>
+
+@{
+    ViewBag.Title = "TouristPlaceList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    div.gallery {
+        border: 1px solid #ccc;
+    }
+
+        div.gallery:hover {
+            border: 1px solid #777;
+        }
+
+        div.gallery img {
+            width: 100%;
+            height: auto;
+        }
+
+    div.desc {
+        padding: 15px;
+        text-align: center;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .responsive {
+        padding: 0 6px;
+        float: left;
+        width: 24.99999%;
+    }
+
+
+    @@media only screen and (max-width: 700px) {
+        .responsive {
+            width: 49.99999%;
+            margin: 6px 0;
+        }
+    }
+
+    @@media only screen and (max-width: 500px) {
+        .responsive {
+            width: 100%;
+        }
+    }
+
+    .clearfix:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    p {
+        text-align: justify;
+    }
+    textarea{
+        max-width:100%;
+        margin:6px;
+    }
+
+    /*.row {
+        border: 1px solid gray;
+    }*/
+</style>
+<h2 style="text-align:center;color:green;">Popular Tourist Place In World</h2>
+@foreach (var item in Model)
+{
+    <div class="responsive" style="margin-bottom:10px!important;">
+
+        <div class="gallery">
+            <div class="desc">
+                @item.Title
+            </div>
+            <a target="_blank" href="@item.ImageUrl">
+                <img src="@item.ImageUrl" alt="@item.Title" class="img-responsive" style="height:200px;">
+            </a>
+            <div class="desc" style="text-align:justify;min-height:220px;">
+                @if (@item.Description.Length > 250)
+                {
+                    <span> @item.Description.Substring(0, 250)</span>
+                    @Html.ActionLink("View Details ", "ViewDetails", new { id = item.ToristPlaceId })
+
+                }
+                else
+                {
+                    <span>
+                        @item.Description
+                    </span>
+                }
+            </div>
+
+            <div class="desc">
+                <input type="button" class="vComments btn-success" id="@item.ToristPlaceId" value="View Comments" /> <input type="button" class="addComments btn-success" id="@item.ToristPlaceId" value="Add Comments" />
+                <div id="dvCommentsAndFeedBack">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+}
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight:bold;"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+<div class="clearfix"></div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(document).on('click', '.vComments', function () {
+        var $this = $(this);
+        var tId = $(this).attr('id');
+        $.ajax({
+                url: "@Url.Action("GetCommentsByTouristPlaceId", "Home")",
+                type: "POST",
+                data: JSON.stringify({ tId: tId}),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (response) {
+                 }, success: function (result) {
+                    var i = 0;
+                    var tr = '';
+                    debugger;
+                    $.each(result.Data.data, function (key,val) {
+                        tr = tr + '<div class="row" style="margin:0px;padding:2px;margin-bottom:1px;background-color: #f3f0f0">';
+                        tr = tr + '<div>';
+                        tr = tr + '<h6 style="font-weight:bold;">Name:' + val.TouristName + '</h6>';
+                        tr = tr + ' <p>Comments:' + val.Comment + '</p>';
+                        tr = tr + ' </div>';
+                        tr = tr + ' </div>';
+                        i = 1;
+                    });
+                    if (i == 0) {
+
+                        tr = tr + '<div class="row" style="margin:0px;padding:2px">';
+                        tr = tr + '<div>';
+                        tr = tr + '<h6 style="color:red">No comments found</h6>';                      
+                        tr = tr + ' </div>';
+                        tr = tr + ' </div>';
+                        $('.modal-body').html(tr);
+                    } else {
+                        $('.modal-body').html(tr);
+                       
+                    }
+                    $('#exampleModalLabel').text('Comments');
+                    $('#exampleModal').modal({
+                        show: 'false'
+                    });
+                   
+                    //$($this).parent().find('#dvCommentsAndFeedBack').html(tr);
+                }
+        });
+    });
+    $(document).on('click', '.addComments', function () {
+        var tpId = $(this).attr('id');
+        var tr = ' <div class="row">';
+        tr = tr + ' <div class="col-lg-12">';
+        tr = tr + '<textarea id="taComments" class="form-control taComments" style"max-width:95%!important;margin: 6px;"></textarea>';
+        tr = tr + '<input type="button" class="btncancel btn-danger" value="Cancel" /> <input type="button" class="btnSaveComments btn-success" value="Save" id='+tpId+' /> ';
+        tr = tr + '   </div>';
+        tr = tr + '  </div>';
+        $('#exampleModalLabel').text('Add New Comment');
+        $('.modal-body').html(tr);
+        $('#exampleModal').modal({
+            show: 'false'
+        });
+        //$(this).parent().find('#dvCommentsAndFeedBack').html(tr);
+
+    });
+    $(document).on('click', '.btncancel', function () {
+        $(this).parent().parent().remove();
+        $('#exampleModal').modal('hide');
+    });
+
+        $(document).on('click', '.btnSaveComments', function () {
+        debugger;
+        var  isValid = true;
+        var tpId = $(this).attr('id');
+        var comments = $('.taComments').val();
+        if (!($('.taComments').val().length > 0)) {
+            isValid = false;
+            $('.taComments').addClass('addRequiredClass');
+        } else {
+            $('.taComments').removeClass('addRequiredClass');
+        }
+        if (isValid) {
+       
+        var obj = new Object();
+        obj.ToristPlaceId = tpId;
+        obj.Comment = comments;
+        obj.CommentDate = new Date();
+        obj.TouristRegistrationId = 1;
+              $.ajax({
+                url: "@Url.Action("SaveComments", "Home")",
+                type: "POST",
+                data: JSON.stringify({ obj: obj}),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (response) {
+                }, success: function (response) {
+                    if (response.Data.Status == 'Success') {
+                        $('.taComments').val('');
+                        alert('Comments Saved successfully');
+                        $('#exampleModal').modal('hide');
+                    }
+                    if (response.Data.Status == 'Invalid') {
+                        alert(response.Data.Msg);
+                    }
+                }
+               });
+        }
+
+    });
+
+
+    
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

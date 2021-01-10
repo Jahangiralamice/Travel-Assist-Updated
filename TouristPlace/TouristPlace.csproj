@@ -161,6 +161,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Screenshots\add comment.jpg" />
+    <Content Include="Screenshots\After Login.jpg" />
+    <Content Include="Screenshots\all comment.jpg" />
+    <Content Include="Screenshots\Landing Page.jpg" />
+    <Content Include="Screenshots\Login.jpg" />
+    <Content Include="Screenshots\My Place list.jpg" />
+    <Content Include="Screenshots\Registration.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />

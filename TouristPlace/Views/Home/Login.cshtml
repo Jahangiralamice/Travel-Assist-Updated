@@ -1,18 +1,18 @@
 ﻿@{
     ViewBag.Title = "User Login";
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
-    
+
 }
 <style type="text/css">
-    .addRequiredClass{
-        border:1px solid red;
+    .addRequiredClass {
+        border: 1px solid red;
     }
 </style>
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
 <div class="center-screen">
     <div class="panel panel-default" style="max-width:500px;width:500px;">
-        <div class="panel-heading bg-success" style="background-color: #15c0e7;">Log In</div>
+        <div class="panel-heading bg-success" style="background-color: #15c0e7; text-align:center; font-weight:bold">Log In</div>
         <div class="panel-body" id="dvLogInPanel">
 
             <table class="table table-bordered table-condensed">
@@ -40,7 +40,7 @@
         </div>
     </div>
 </div>
-    
+
 
 
 <style type="text/css">
@@ -56,40 +56,31 @@
     .btn-primary {
         margin-right: 40px;
     }
-
-   
 </style>
-    
+
 
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-    
-    $(document).on('click', '#btnLogin', function () {       
+
+    $(document).on('click', '#btnLogin', function () {
         var isValid = true;
-        //$('#dvLogInPanel .isrequired').each(function (index, item) {
-        //    if (!($(this).val().length > 0)) {
-        //        isValid = false;
-        //        debugger;
-        //        $(this).addClass('addRequiredClass');
-        //    }
-        //});
 
         if ($('#txtUserName').val().length > 0) {
-            
-        } else {           
+
+        } else {
             isValid = false;
             $('#txtUserName').css("border", "1px solid red");
-           
+
         }
 
-        if (($('#txtPassword').length > 0)) {
-            
+        if (($('#txtPassword').val().length > 0)) {
+
         } else {
             isValid = false;
             debugger;
             $('#txtPassword').css("border", "1px solid red");
-           
+
         }
 
         if (isValid) {

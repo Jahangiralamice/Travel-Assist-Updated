@@ -10,13 +10,14 @@
 
     #Description {
         width: 280px;
+        height: 170px;
     }
 
 </style>
-@using (Html.BeginForm("NewTouristPlace", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("EditTouristPlace", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-
+    @Html.HiddenFor(m=>m.ToristPlaceId)
     <div class="form-horizontal">
         <h4 style="font-weight:bold;">Update Tourist Place</h4>
         <hr />
@@ -49,10 +50,10 @@
 
                                 <tr>
                                     <td>
-                                        @Html.LabelFor(model => model.PlaceImage, htmlAttributes: new { @class = "control-label " })
+                                        <label for="PlaceImage">Place Image</label>
                                     </td>
                                     <td>
-                                        <input type="file" src="@Model.PlaceImage" name="PlaceImage" required />
+                                        <input type="file" src="@Url.Content(Model.ImageUrl)" name="PlaceImage" required />
                                         @Html.ValidationMessageFor(model => model.PlaceImage, "", new { @class = "text-danger" })
                                     </td>
                                 </tr>

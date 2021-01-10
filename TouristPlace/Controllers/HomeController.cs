@@ -48,7 +48,6 @@ namespace TouristPlace.Controllers
         #endregion
 
 
-
         #region Login and Log Off
         public ActionResult Login()
         {
@@ -79,9 +78,6 @@ namespace TouristPlace.Controllers
             return RedirectToAction("Index");
         }
         #endregion
-
-
-
 
 
         #region Tourist Place Operation
@@ -166,8 +162,6 @@ namespace TouristPlace.Controllers
 
         #endregion
 
-
-
         #region Comment Operation
 
         #region Get Comments
@@ -202,13 +196,6 @@ namespace TouristPlace.Controllers
         }
         #endregion 
         #endregion
-
-
-
-
-
-
-
 
         #region Registration Operation
         public ActionResult NewRegistration()

@@ -94,8 +94,11 @@
             </div>
 
             <div class="desc">
-                <input type="button" class="vComments btn-success" id="@item.ToristPlaceId" value="View Comments" /> <input type="button" class="addComments btn-success" id="@item.ToristPlaceId" value="Add Comments" />
+                <input type="button" class="vComments btn-success" id="@item.ToristPlaceId" value="View Comments" /> 
+                <input type="button" class="addComments btn-success" id="@item.ToristPlaceId" value="Add Comments" />
                 <div id="dvCommentsAndFeedBack">
+
+                    
 
                 </div>
             </div>
@@ -171,6 +174,7 @@
                 }
         });
     });
+
     $(document).on('click', '.addComments', function () {
         var tpId = $(this).attr('id');
         var tr = ' <div class="row">';
@@ -202,7 +206,8 @@
             $('.taComments').addClass('addRequiredClass');
         } else {
             $('.taComments').removeClass('addRequiredClass');
-        }
+            }
+
         if (isValid) {
        
         var obj = new Object();

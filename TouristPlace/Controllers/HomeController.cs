@@ -174,7 +174,7 @@ namespace TouristPlace.Controllers
                 item.TouristName = obj.Name;
             }
 
-            return Json(new JsonResult() { Data = new { Status = "Failed", data = list } }, JsonRequestBehavior.AllowGet);
+            return Json(new JsonResult() { Data = new { Status = "Sucess", data = list } }, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
